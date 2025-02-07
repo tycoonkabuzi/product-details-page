@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import "./App.css";
+import { Routes, Route } from "react-router";
+import Home from "./views/Home";
+import Details from "./views/Details";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const products = [
+    {
+      id: "1",
+      name: "Laptop",
+      details:
+        "A high-performance laptop with 16GB RAM, 512GB SSD, and a 15-inch display.",
+    },
+    {
+      id: "2",
+      name: "Smartphone",
+      details:
+        "A sleek smartphone with a 6.5-inch AMOLED display, 128GB storage, and a 48MP camera.",
+    },
+    {
+      id: "3",
+      name: "Tablet",
+      details:
+        "A lightweight tablet with a 10-inch screen, 64GB storage, and 8MP rear camera.",
+    },
+  ];
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route index element={<Home products={products} />} />
+        <Route path="details/:id" element={<Details products={products} />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
